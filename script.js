@@ -415,4 +415,9 @@ const data = [
     },
   ];
 
-  console.log(data.filter(item => item.id === 23))
+  data.forEach(function(item){
+    if(item.id < 18){
+        return item
+    }
+})
+console.log(item)
