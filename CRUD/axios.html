@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        //AXIOS get (READ) method
+
+        axios.get("https://northwind.vercel.app/api/orders/").then((response) => {
+          console.log(response.data);
+        });
+
+        //AXIOS post method
+
+        const Post = (musteriId, isciId) => {
+          axios
+            .post("https://northwind.vercel.app/api/orders/", {
+              customerId: musteriId,
+              employeeId: isciId,
+            })
+            .then((response) => {
+              console.log("Post edildi", response.data);
+            });
+        };
+
+        //AXIOS Update (Put or Patch method)
+
+        const Update = (id, musteriId, isciId) => {
+          axios
+            .patch(`https://northwind.vercel.app/api/orders/${id}`, {
+              customerId: musteriId,
+              employeeId: isciId,
+            })
+            .then((response) => {
+              console.log("duzelis edildi", response.data);
+            });
+        };
+
+        //AXIOS Delete method
+
+        const Delet = (id) => {
+          axios
+            .delete(`https://northwind.vercel.app/api/orders/${id}`)
+            .then((response) => {
+              console.log("silindi", response.data);
+            });
+        };
+
+      //AXIOS Instance
+
+      const instance = axios.create({
+        baseURL: `https://northwind.vercel.app/api/`,
+        headers: { "X-Custom-Header": "foobar" },
+      });
+
+      //AXIOS instance GET
+
+      instance.get("suppliers").then((res) => {
+        console.log(res.data);
+      });
+
+      //AXIOS instance POST
+
+      const postAxios = (sirketadi, kontakt) => {
+        instance
+          .post("suppliers", {
+            companyName: sirketadi,
+            contactName: kontakt,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
+      };
+
+      //AXIOS instance Update
+
+      const update = (id, sirketadi, kontakt) => {
+        instance
+          .patch(`suppliers/${id}`, {
+            companyName: sirketadi,
+            contactName: kontakt,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
+      };
+
+      //AXIOS instance DElete method
+
+      const Del = (id) => {
+        instance.delete(`suppliers/${id}`).then((res) => {
+          console.log("silindi", res.data);
+        });
+      };
+    </script>
+  </body>
+</html>

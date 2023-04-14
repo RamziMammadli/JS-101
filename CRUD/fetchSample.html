@@ -8,34 +8,36 @@
   </head>
   <body>
     <script>
-      //TASK
-      //https://northwind.vercel.app/api/suppliers/ fetch metodu ile melumatlari localda yeni array-e (push) yazdirin
-      //Melumatlari arrayda Paris şəhərinə görə (filter)ləyin
-      //Məlumatları idlərinə görə çeşidləyin (sort)
-      //https://northwind.vercel.app/api/suppliers/ Api-yə Yeni bir obyekt Post edin
-      //https://northwind.vercel.app/api/suppliers/ hər hansı bir obyekti hər hansı bir məlumatı edit edin
-      //https://northwind.vercel.app/api/suppliers/ hər hansı obyekti silin
+      // TASK
+      // https://northwind.vercel.app/api/suppliers/ fetch metodu ile melumatlari localda yeni array-e (push) yazdirin
+      // Melumatlari arrayda Paris şəhərinə görə (filter)ləyin
+      // Məlumatları idlərinə görə çeşidləyin (sort)
+      // https://northwind.vercel.app/api/suppliers/ Api-yə Yeni bir obyekt Post edin
+      // https://northwind.vercel.app/api/suppliers/ hər hansı bir obyekti hər hansı bir məlumatı edit edin
+      // https://northwind.vercel.app/api/suppliers/ hər hansı obyekti silin
 
-      //GET Method
+      // GET Method
 
-        fetch(`https://northwind.vercel.app/api/orders`)
-          .then((res) => res.json())
-          .then((data) => {
-            arr.push(data);
-          });
+      fetch(`https://northwind.vercel.app/api/orders`) //fetch atiriq - request atiriq
+        .then((res) => res.json()) // res geldi, json oldu , gelen  datani istifade edirik
+        .then((data) => {
+          arr.push(data); // PUSH aldigimiz movcud array - i ...
+        });
 
-        console.log(arr);
+      console.log(arr);
 
-      //Create Method
+      // Create Method
 
       const Post = (musteriId, isciId) => {
+        // funksiya Post yaradiriq , iki parametr alir
         let url = `https://northwind.vercel.app/api/orders/`;
 
         fetch(url, {
+          // fetch atmaq
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-          },
+          }, //Post method FETCH
           body: JSON.stringify({
             costumerId: musteriId,
             employerId: isciId,
@@ -45,7 +47,38 @@
           .then(data);
       };
 
-      
+      // UPDATE Method PUT or PATCH
+
+      const update = (id, musteriId, isciId) => {
+        fetch(`https://northwind.vercel.app/api/orders/${id}`, {
+        method: "PATCH", //PUT
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customerId: musteriId,
+          employeeId: isciId
+        }),
+      })
+        .then((res) => {
+          return res.json()
+        })
+        .then((data) => {
+          console.log(data);
+        });
+      }
+
+      // Delete Method
+
+      const del = (id) => {
+        fetch(`https://northwind.vercel.app/api/orders/${id}`, {
+          method: "DELETE",
+        }).then(() => {
+          console.log("removed");
+        });
+      };
+
+
     </script>
   </body>
 </html>
