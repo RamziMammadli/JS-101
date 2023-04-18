@@ -77,6 +77,18 @@
           console.log("removed");
         });
       };
+
+
+
+      ///////////////////////////////////////
+
+      const arr = []
+            fetch('https://northwind.vercel.app/api/products')
+            .then(response => response.json())
+            .then((data) => {
+               console.log((data.filter((item) => item.supplier?.contactName === "Shelley Burke")));
+               
+            });
       
     </script>
   </body>

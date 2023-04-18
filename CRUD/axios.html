@@ -8,107 +8,151 @@
     <title>Document</title>
   </head>
   <body>
+    TASK day 3
+    <h1>API `https://northwind.vercel.app/api/products`</h1>
 
-          TASK day 3
-          <h1>API `https://northwind.vercel.app/api/products`</h1>
+    <h1>fetch metodu ile CRUD + consolda gorulen isi melumat kimi gosterin</h1>
+    <h1>axios metodu ile CRUD + consolda gorulen isi melumat kimi gosterin</h1>
+    <h1>
+      axios instance metodu ile CRUD + consolda gorulen isi melumat kimi
+      gosterin
+    </h1>
 
-          <h1>fetch metodu ile CRUD + consolda gorulen isi melumat kimi gosterin</h1>
-          <h1>axios metodu ile CRUD + consolda gorulen isi melumat kimi gosterin</h1>
-          <h1>axios instance metodu ile CRUD + consolda gorulen isi melumat kimi gosterin</h1>
-
-          <h3>Her get metodunda "companyName" "New Orleans Cajun Delights" olanlari filterleyib yeni arraye push edin</h3> // diqqetli olun
-
-
+    <h3>
+      Her get metodunda "companyName" "New Orleans Cajun Delights" olanlari
+      filterleyib yeni arraye push edin
+    </h3>
+    // diqqetli olun
 
     <script>
-        //AXIOS get (READ) method
 
-        axios.get("https://northwind.vercel.app/api/orders/").then((response) => {
-          console.log(response.data);
-        });
+      //AXIOS get (READ) method
 
-        //AXIOS post method
+      const az = []
 
-        const Post = (musteriId, isciId) => {
-          axios
-            .post("https://northwind.vercel.app/api/orders/", {
-              customerId: musteriId,
-              employeeId: isciId,
-            })
-            .then((response) => {
-              console.log("Post edildi", response.data);
-            });
-        };
+      axios.get("https://northwind.vercel.app/api/orders/")
+      .then((response) => {
 
-        //AXIOS Update (Put or Patch method)
+        az.push(response.data.filter(item => item.customerId == "SPLIR"))
 
-        const Update = (id, musteriId, isciId) => {
-          axios
-            .patch(`https://northwind.vercel.app/api/orders/${id}`, {
-              customerId: musteriId,
-              employeeId: isciId,
-            })
-            .then((response) => {
-              console.log("duzelis edildi", response.data);
-            });
-        };
+        response.data.filter(function(item) {
+          if(item.customerId == "SPLIR"){
+            az.push(item)
+          }
+        })
 
-        //AXIOS Delete method
+        // const splir = response.data.filter(item => item.customerId == "SPLIR");
 
-        const Delet = (id) => {
-          axios
-            .delete(`https://northwind.vercel.app/api/orders/${id}`)
-            .then((response) => {
-              console.log("silindi", response.data);
-            });
-        };
+        // az.push(splir)
 
-      //AXIOS Instance
+        console.log(az);
 
-      const instance = axios.create({
-        baseURL: `https://northwind.vercel.app/api/`,
-        headers: { "X-Custom-Header": "foobar" },
       });
 
-      //AXIOS instance GET
 
-      instance.get("suppliers").then((res) => {
-        console.log(res.data);
-      });
+      //AXIOS post method
 
-      //AXIOS instance POST
-
-      const postAxios = (sirketadi, kontakt) => {
-        instance
-          .post("suppliers", {
-            companyName: sirketadi,
-            contactName: kontakt,
+      const Post = (musteriId, isciId) => {
+        axios
+          .post("https://northwind.vercel.app/api/orders/", {
+            customerId: musteriId,
+            employeeId: isciId,
           })
-          .then((res) => {
-            console.log(res.data);
+          .then((response) => {
+            az.push(response.data)
           });
       };
+     
 
-      //AXIOS instance Update
+      // //AXIOS Update (Put or Patch method)
 
-      const update = (id, sirketadi, kontakt) => {
-        instance
-          .patch(`suppliers/${id}`, {
-            companyName: sirketadi,
-            contactName: kontakt,
-          })
-          .then((res) => {
-            console.log(res.data);
-          });
-      };
+      // const Update = (id, musteriId, isciId) => {
+      //   axios
+      //     .patch(`https://northwind.vercel.app/api/orders/${id}`, {
+      //       customerId: musteriId,
+      //       employeeId: isciId,
+      //     })
+      //     .then((response) => {
+      //       console.log("duzelis edildi", response.data);
+      //     });
+      // };
 
-      //AXIOS instance DElete method
+      // //AXIOS Delete method
 
-      const Del = (id) => {
-        instance.delete(`suppliers/${id}`).then((res) => {
-          console.log("silindi", res.data);
-        });
-      };
+      // const Delet = (id) => {
+      //   axios
+      //     .delete(`https://northwind.vercel.app/api/orders/${id}`)
+      //     .then((response) => {
+      //       console.log("silindi", response.data);
+      //     });
+      // };
+
+      // //AXIOS Instance
+
+      // const instance = axios.create({
+      //   baseURL: `https://northwind.vercel.app/api/`,
+      //   headers: { "X-Custom-Header": "foobar" },
+      // });
+
+      // //AXIOS instance GET
+
+      // instance.get("suppliers").then((res) => {
+      //   console.log(res.data);
+      // });
+
+      // //AXIOS instance POST
+
+      // const postAxios = (sirketadi, kontakt) => {
+      //   instance
+      //     .post("suppliers", {
+      //       companyName: sirketadi,
+      //       contactName: kontakt,
+      //     })
+      //     .then((res) => {
+      //       console.log(res.data);
+      //     });
+      // };
+
+      // //AXIOS instance Update
+
+      // const update = (id, sirketadi, kontakt) => {
+      //   instance
+      //     .patch(`suppliers/${id}`, {
+      //       companyName: sirketadi,
+      //       contactName: kontakt,
+      //     })
+      //     .then((res) => {
+      //       console.log(res.data);
+      //     });
+      // };
+
+      // //AXIOS instance DElete method
+
+      // const Del = (id) => {
+      //   instance.delete(`suppliers/${id}`).then((res) => {
+      //     console.log("silindi", res.data);
+      //   });
+      // };
+
+      // const arr = [];
+      // fetch("https://northwind.vercel.app/api/products")
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     const abc = data.filter(item => item.id == 4)
+      //     arr.push(abc)
+      //   });
+      //   console.log(arr);
+
+      //  const arr = [];
+      //       axios.get(`https://northwind.vercel.app/api/products`)
+      //         .then((res) => {
+      //           const filteredData = res.data.filter((item) => item.supplier?.companyName === "New Orleans Cajun Delights");
+      //           arr.push(filteredData);
+      //           console.log(arr);
+      //         })
+
+        
+            
     </script>
   </body>
 </html>
